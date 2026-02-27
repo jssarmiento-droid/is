@@ -1,0 +1,57 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import { platos } from "../data/platos.js";
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Menú - Arepa Don Cuy</title>
+  </head>
+  <body class="bg-gray-50">
+    <Navbar />
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-extrabold text-[#7d4e11] uppercase tracking-wider">
+          Nuestro Menú Especial
+        </h2>
+        <div class="h-1 w-24 bg-[#fbbf24] mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {
+          platos.map((plato) => {
+            return (
+              <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="relative">
+                  <img src={plato.imagen} alt={plato.nombre} class="w-full h-64 object-cover" />
+                  <div class="absolute top-4 right-4 bg-[#7d4e11] text-white px-3 py-1 rounded-lg font-bold">
+                    ${plato.precio}
+                  </div>
+                </div>
+                
+                <div class="p-6">
+                  <h3 class="text-2xl font-bold text-gray-800 mb-2">{plato.nombre}</h3>
+                  <p class="text-gray-600 leading-relaxed mb-6">
+                    {plato.descripcion}
+                  </p>
+                  
+                  <button class="w-full bg-[#fbbf24] hover:bg-[#f59e0b] text-[#7d4e11] font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                    <span>Agregar a la orden</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 100-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </main>
+  </body>
+
+</html>
